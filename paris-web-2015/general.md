@@ -35,4 +35,17 @@ Il préconise également l'utilisation de *post-compilers*, c'est-à-dire des co
 
 Si cette conférence peut sembler un simple rappel pour ceux qui se tiennent au courant de l'évolution des outils web, elle permet aux autres de se rattraper très facilement sur les dernières tendances en offrant un panorama global de l'écosystème actuel.
 
+## [OpenID Connect, le nouveau standard d'authentification sur le web : mise en oeuvre sur FranceConnect](http://fr.slideshare.net/fpetitit/paris-web-2015-france-connect-et-openid-connect)
+
+Tout le monde connaît aujourd'hui plus ou moins OpenID	 ; pour les autres, je vais tout de même le décrire. OpenID est un système d'authentification décentralisée qui permet de s'authentifier sur différent site le proposant en utilisant un seul et même identifiant (et souvent sans avoir à remplir un long formulaire d'inscription). Ce qu'on sait moins en revanche -- et c'est là le propos de [François Petitit](https://twitter.com/francoispetitit), c'est que OpenID est considéré comme obsolète et qu'on doit maintenant utiliser son successeur, OpenID Connect.
+Il s'agit d'une surcouche du protocole OAuth2, ce qui lui permet d'offrir en plus du service d'authentification d'OpenID un service de gestion des autorisations. Il offre une interface HTTP RestFul utilisant JSON comme format de données.
+
+Frédéric Petitit nous fait un retour d'expérience sur la mise en oeuvre de cette technologie sur FranceConnect. Mais qu'est-ce que FranceConnect ? Eh bien, c'est une surcouche sur OpenID Connect, qui va bien nous simplifier la vie en tant que français. Qui n'a pas déjà souffert de l'administration française, où chaque démarche réclame un nombre incalculable d'informations et de pièces à fournir ? Que ce soit pour la Caisse d'Allocation Familiale, pour les impôts ou pour toute autre démarche, les outils en ligne laissent aujourd'hui à désirer.
+
+FranceConnect offre (ou offrira) un accès universel à toutes les adminstrations françaises. Plus besoin de s'inscrire individuellement à chacun des sites concernés, un même identifiant pourra être utilisé partout. Et ça, c'est une sacrément bonne nouvelle ! La plupart des informations seront pré-remplies, nous permettant de gagner un temps précieux. Cela va même plus loin, puisqu'en y connectant des services comme EDF ou notre offre internet, ces services pourront fournir automatiquement des pièces comme un justificatif de domicile lorsque c'est nécessaire. Et cela, simplement en autorisant l'accès (seulement lorsque nécessaire) aux sites concernés. Plus besoin de manuellement aller chercher tous les documents dont on a besoin, FranceConnect le fera pour nous, tout en nous laissant le contrôle total sur les informations personnelles qu'on souhaite fournir.
+
+Via cet exemple, Frédéric Petitit nous montre clairement quels sont les avantages de l'utilisation de la technologie OpenID Connect, surtout quand on sait que beaucoup de grands acteurs l'ont d'ores et déjà adopté (qui a dit Google ?) Ci-dessous, un schéma résume l'implémentation qu'ils ont réalisé pour FranceConnect.
+
+INSÉRER SCHEMA ICI
+
 ## 
