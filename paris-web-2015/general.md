@@ -48,4 +48,22 @@ Via cet exemple, Frédéric Petitit nous montre clairement quels sont les avanta
 
 INSÉRER SCHEMA ICI
 
-## 
+## [Webperf 2.0](http://stefounet.github.io/webperf2.0/#/)
+
+## Panorama des solutions hybrides mobiles
+
+
+## [CSP : Content Security Policy](http://www.nicolas-hoffmann.net/content-security-policy-parisweb-2015/#/)
+
+[Nicolas Hoffmann](www.nicolas-hoffmann.net) nous présente dans cette conférence une technologie permettant de sécuriser très simplement et très efficacement son front-end. Il s'agit de Content Security Policy, dont la première spécification est plutôt bien supportée par les navigateurs actuels (avec quelques précautions pour IE 10-11). Pour les navigateurs ne la supportant pas, cela ne pose cependant aucun inconvénient puisque ceux-ci ignorent simplement les directives qu'on leur envoie.
+
+Mais en quoi consiste cette technologie ? Il s'agit tout simplement d'envoyer via les headers HTTP des directives au navigateur pour lui indiquer strictement ce qu'il est autorisé de faire. Attention, on ne peut pas seulement refuser ce qui ne nous convient pas, il faut autoriser tout ce dont a besoin notre front-end sous peine de se le voir interdire ! Cela peut paraître contraignant, mais c'est la seule façon d'être certain de ne pas oublier des restrictions, ce qui serait potentiellement dangereux.
+
+Mais de quoi nous protège CSP ? Il permet principalement d'éviter les failles *cross-site scripting* (XSS), c'est-à-dire l'inclusion et l'exécution d'un code malveillant dans notre page. Pour cela, on peut décider de n'autoriser que les scripts ou contenus issus du même nom de domaine que notre site, ou bien interdire les scripts dits *inline* pouvant être ajoutés dans des contenus utilisateurs, ... Les directives sont à insérer dans le header HTTP `Content-Security-Policy:` et se présentent par exemple sous cette forme : `script-src 'self' 'unsafe-inline' ;`
+
+De par son expérience, Nicolas Hoffmann nous recommande cependant d'être prudent sur la mise en place en utilisant deux headers supplémentaires. Le premier, `Content-Security-Policy-Report-URI`, permet de spécifier une adresse sur laquelle le navigateur pourra envoyer des alertes pour chaque contenu bloqué. Cela permet ainsi au webmaster de suivre très exactement ce qui est bloqué et donc de pouvoir repérer facilement des autorisations oubliées. La seconde, `Content-Security-Policy-Report-Only`, permet d'indiquer au navigateur de seulement simuler les directives, c'est-à-dire de ne pas bloquer effectivement les contenus, mais de soulever quand même des alertes. Cela permet donc d'effectuer ses tests en toute sérénité sans que l'utilisateur en pâtisse.
+
+
+
+
+## Les "offs"
