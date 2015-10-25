@@ -10,7 +10,7 @@ Se rendre à Paris Web, c'est un peu comme abandonner son quotidien pour plonger
 
 Chacun vient ici sans a priori (non nous ne sommes pas au pays des bisounours, il y a bien évidemment des exceptions) pour partager autour d'une même passion : le web. Les angles d'approches et les sujets sont bien plus diversifiés que dans les autres conférences auxquelles j'ai pu assister et tournent autour de thème comme la technologie, le design numérique, les standards ouverts, l'accessibilité web et les valeurs morales. Et ce sont bien ces deux dernières thématiques qui caractérisent le plus cette expérience Paris Web !
 
-L'accessibilité web est en effet le cheval (ou plutôt la licorne) de bataille de ce rassemblement ; l'intégralité des conférences étaient traduites en Langue des Signes Française -- ou LSF -- (sponsorisé par Ekino) et la moitié était même transcrite par vélotypie (sponsorisée par Globalis). Le fait de mettre en avant ces valeurs -- et de les respecter ! -- est certainement pour beaucoup dans cette avalanche de bon sentiments guimauvesques !
+L'accessibilité web est en effet le cheval (ou plutôt la licorne) de bataille de ce rassemblement ; l'intégralité des conférences étaient traduites en Langue des Signes Française -- ou LSF (sponsorisé par Ekino) et la moitié était même transcrite par vélotypie (sponsorisée par Globalis). Le fait de mettre en avant ces valeurs -- et de les respecter ! -- est certainement pour beaucoup dans cette avalanche de bon sentiments guimauvesques !
 
 On en ressort plein d'une énergie nouvelle, avec l'envie de mettre en pratique tout ce qu'on a pu découvrir et une volonté nouvelle de *bien faire*. Car bien au-delà des découvertes techniques, Paris Web nous offre l'occasion d'explorer des aspects connexes très complémentaires à notre métier. Et ce, qu'on soit développeur web, graphiste, ou tout autre profession du web.
 
@@ -63,7 +63,24 @@ Mais de quoi nous protège CSP ? Il permet principalement d'éviter les failles 
 
 De par son expérience, Nicolas Hoffmann nous recommande cependant d'être prudent sur la mise en place en utilisant deux headers supplémentaires. Le premier, `Content-Security-Policy-Report-URI`, permet de spécifier une adresse sur laquelle le navigateur pourra envoyer des alertes pour chaque contenu bloqué. Cela permet ainsi au webmaster de suivre très exactement ce qui est bloqué et donc de pouvoir repérer facilement des autorisations oubliées. La seconde, `Content-Security-Policy-Report-Only`, permet d'indiquer au navigateur de seulement simuler les directives, c'est-à-dire de ne pas bloquer effectivement les contenus, mais de soulever quand même des alertes. Cela permet donc d'effectuer ses tests en toute sérénité sans que l'utilisateur en pâtisse.
 
+## [Vorlon.JS : un outil pour simplifier le debug web sur toutes les plateformes]()
 
+## [Découper son application monolithique : Pourquoi ? Comment ?](https://speakerdeck.com/odolbeau/slicing-up-a-monolithic-application-why-and-how)
 
+Benjamin Fraud et Olivier Dolbeau nous font ici un retour sur la mise en place d'une architecture micro-services chez [Blablacar](https://www.blablacar.fr/). Avant cela, leur site web était une application monolithique, c'est-à-dire une grosse application rassemblant tous les services REST et toutes les couches métiers de l'écosystème Blablacar. Tant que celui restait relativement petit, cette organisation fonctionnait très bien, mais avec l'augmentation de la base de code, de nombreux problèmes ont fini par se poser. 
 
-## Les "offs"
+Pour commencer, avec leur processus de déploiement continu, leur workflow de livraison prenait une vingtaine de minutes, voire parfois bien plus. Cela peut sembler peu, mais lorsqu'on problème se pose en production, vingt minutes représente de très nombreuses pertes pour Blablacar.
+
+De même, une application monolithique se révélait très compliquée à *scaler* facilement et à répliquer pour permettre de cibler les utilisateurs géographiquement.
+
+Au niveau de la *developper experience* (j'en parlais plus haut), la base de code était devenue trop importante pour s'y retrouver facilement. L'interdépendance des modules provoquait des effets *boule de neige* lorsqu'on ne vérifiait pas assez les conséquences de certains changements ; un effet qu'Olivier résume par "*With minor changes comes major bugs.*" Au niveau de la gestion de version, il fallait régler de nombreux conflits, plusieurs personnes intervenant régulièrement sur les mêmes parties du code, entraînant des `rebase` conséquents et pénibles.
+
+Pour toutes ces raisons, Blablacar a donc choisi de s'orienter sur une architecture en micro-services : un ensemble de projets spécialisés chacun sur une seule brique métier. L'un prend par exemple en charge les utilisateurs, un autre la modération, un troisième les réservations... Tous ces services communiquent via un *broker* de messages.
+
+Chez Blablacar la règle est simple : un service ne peut en aucune cas demander à un autre service d'effectuer des actions métier. Il peut uniquement demander les données qui lui sont nécessaires pour ses traitements. Par contre, un service peut émettre des évènements lorsqu'il réalise certaines opérations pour notifier d'autres services.
+
+Les avantages sont nombreux. Avec ce système, les livraisons en production sont très rapides et surtout ciblées. Une déficience d'un service ne peut pas faire tomber les autres. L'application est plus facilement *scalable* et plus rapidement au moment des pics de charge. La base de code reste raisonnable car répartie entre de nombreux projets. Enfin, le nombre de conflits entre codeurs durant le développement a beaucoup diminué. Mais comme le précise les deux *speakers*, les micro-services ne sont pas une solution miracle, et apportent leur lot d'inconvénients.
+
+En effet, l'initialisation d'une nouvelle brique métier est beaucoup plus longue, même en ayant des *pattern* d'applications. De même, un projet a dû être spécifiquement créé pour gérer la configuration de tous ces projets. La durée d'apprentissage d'un nouveau développeur sur le projet est également beaucoup plus longue. Enfin, du côté *devops*, la gestion est devenue bien plus complexe.
+
+Si pour Blablacar les avantages surpassent de loin les inconvénients, les deux intervenants nous enjoignent donc à réfléchir très sérieusement avant de choisir de faire évoluer son architecture.
