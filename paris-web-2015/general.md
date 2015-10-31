@@ -90,3 +90,7 @@ Les avantages sont nombreux. Avec ce système, les livraisons en production sont
 En effet, l'initialisation d'une nouvelle brique métier est beaucoup plus longue, même en ayant des *pattern* d'applications. De même, un projet a dû être spécifiquement créé pour gérer la configuration de tous ces projets. La durée d'apprentissage d'un nouveau développeur sur le projet est également beaucoup plus longue. Enfin, du côté *devops*, la gestion est devenue bien plus complexe.
 
 Si pour Blablacar les avantages surpassent de loin les inconvénients, les deux intervenants nous enjoignent donc à réfléchir très sérieusement avant de choisir de faire évoluer son architecture.
+
+## Conclusion
+
+Je n'ai pas pu présenter ici toutes les conférences tant cette édition fut riche en contenu. Je tiens à remercier ici toutes les personnes impliquées dans l'organisation de cet évènement, auquel je n'hésiterai pas à participer de nouveau l'année prochaine.
