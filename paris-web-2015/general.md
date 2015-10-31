@@ -46,11 +46,19 @@ FranceConnect offre (ou offrira) un accès universel à toutes les adminstration
 
 Via cet exemple, Frédéric Petitit nous montre clairement quels sont les avantages de l'utilisation de la technologie OpenID Connect, surtout quand on sait que beaucoup de grands acteurs l'ont d'ores et déjà adopté (qui a dit Google ?) Ci-dessous, un schéma résume l'implémentation qu'ils ont réalisé pour FranceConnect.
 
-INSÉRER SCHEMA ICI
+![Schéma de l'architecture FranceConnect](./images/schema-france-connect.jpg)
 
 ## [Webperf 2.0](http://stefounet.github.io/webperf2.0/#/)
 
-## Panorama des solutions hybrides mobiles
+[Stéphane Rios](https://twitter.com/stefounet) nous présente dans une conférence un état des lieux des performances web actuellement, essentiellement du point de vue du chargement des pages web. Et son conseil principal est le suivant : il faut sans cesse se tenir informé, car les règles en matière de web performance peuvent changer radicalement et rapidement.
+
+L'exemple qu'il nous présente est la concaténation des fichiers. Si cela semblait une évidence pour l'optimisation de nos sites web -- cela permet en effet de réduire le nombre de requêtes HTTP -- il nous prouve qu'aujourd'hui la question se pose de nouveaux. En effet, un seul fichier très long peut ralentir le chargement de la page, alors qu'aujourd'hui les navigateurs sont capables de paralléliser le  téléchargement des fichiers. Cela devient d'autant plus vrai avec HTTP/2. Il faut donc rester prudent et ne pas concaténer à outrance les fichiers, mais privilégier les tests pour trouver le meilleur compromis. Dans la même veine, il considère que la minification des fichiers a peu d'intérêt, l'essentiel du temps de chargement étant dû à la requête HTTP elle-même, et non la taille du fichier qui varie "peu" une fois minifié.
+
+Alors comment optimiser un site aujourd'hui ? Stéphane Rios parle sans surprise du chargement progressif, grande tendance actuellement dans le monde du web. Il faut charger immédiatement tout ce qui est nécessaire au premier rendu de la page, puis charger ensuite progressivement ce qui manque. Pour cela, on peut ainsi faire du *lazy-loading* sur les images en-dessous de la ligne de flottaison, charger nos scripts par modules seulement lorsque ceux-ci sont utilisés, charger nos polices de façon asynchrones... Pour charger les éléments essentiels rapidement, il ne faut pas hésiter à *inliner* le CSS, les images et les scripts, selon le concept *inline first view*.
+
+La gestion du cache doit également être une priorité du développeur. Côté serveur évidemment, en définissant précisément la granularité de nos caches. On peut également mettre en cache des versions *cookieless* de nos pages, en partant de ce constat très simple : tous les visiteurs sans cookies ne sont pas authentifiés et on donc accès exactement au même contenu. On peut donc mettre en cache cette version des pages pour la servir plus rapidement. Mais aujourd'hui il est aussi possible de gérer le cache directement en *front*. Avec les *services workers*. Ceux-ci sont des composants agissant comme un *proxy* dans le navigateur de l'utilisateur, ayant un contrôle absolu sur les ressources téléchargées et la mise en cache de celles-ci.  
+
+Sur
 
 
 ## [CSP : Content Security Policy](http://www.nicolas-hoffmann.net/content-security-policy-parisweb-2015/#/)
@@ -62,8 +70,6 @@ Mais en quoi consiste cette technologie ? Il s'agit tout simplement d'envoyer vi
 Mais de quoi nous protège CSP ? Il permet principalement d'éviter les failles *cross-site scripting* (XSS), c'est-à-dire l'inclusion et l'exécution d'un code malveillant dans notre page. Pour cela, on peut décider de n'autoriser que les scripts ou contenus issus du même nom de domaine que notre site, ou bien interdire les scripts dits *inline* pouvant être ajoutés dans des contenus utilisateurs, ... Les directives sont à insérer dans le header HTTP `Content-Security-Policy:` et se présentent par exemple sous cette forme : `script-src 'self' 'unsafe-inline' ;`
 
 De par son expérience, Nicolas Hoffmann nous recommande cependant d'être prudent sur la mise en place en utilisant deux headers supplémentaires. Le premier, `Content-Security-Policy-Report-URI`, permet de spécifier une adresse sur laquelle le navigateur pourra envoyer des alertes pour chaque contenu bloqué. Cela permet ainsi au webmaster de suivre très exactement ce qui est bloqué et donc de pouvoir repérer facilement des autorisations oubliées. La seconde, `Content-Security-Policy-Report-Only`, permet d'indiquer au navigateur de seulement simuler les directives, c'est-à-dire de ne pas bloquer effectivement les contenus, mais de soulever quand même des alertes. Cela permet donc d'effectuer ses tests en toute sérénité sans que l'utilisateur en pâtisse.
-
-## [Vorlon.JS : un outil pour simplifier le debug web sur toutes les plateformes]()
 
 ## [Découper son application monolithique : Pourquoi ? Comment ?](https://speakerdeck.com/odolbeau/slicing-up-a-monolithic-application-why-and-how)
 
