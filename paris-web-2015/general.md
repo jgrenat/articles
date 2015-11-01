@@ -75,7 +75,7 @@ De par son expérience, Nicolas Hoffmann nous recommande cependant d'être prude
 
 Benjamin Fraud et Olivier Dolbeau nous font ici un retour sur la mise en place d'une architecture micro-services chez [Blablacar](https://www.blablacar.fr/). Avant cela, leur site web était une application monolithique, c'est-à-dire une grosse application rassemblant tous les services REST et toutes les couches métiers de l'écosystème Blablacar. Tant que celui restait relativement petit, cette organisation fonctionnait très bien, mais avec l'augmentation de la base de code, de nombreux problèmes ont fini par se poser. 
 
-Pour commencer, avec leur processus de déploiement continu, leur workflow de livraison prenait une vingtaine de minutes, voire parfois bien plus. Cela peut sembler peu, mais lorsqu'on problème se pose en production, vingt minutes représente de très nombreuses pertes pour Blablacar.
+Pour commencer, avec leur processus de déploiement continu, leur workflow de livraison prenait une vingtaine de minutes, voire parfois bien plus. Cela peut sembler peu, mais lorsqu'un problème se pose en production, vingt minutes représente de très nombreuses pertes pour Blablacar.
 
 De même, une application monolithique se révélait très compliquée à *scaler* facilement et à répliquer pour permettre de cibler les utilisateurs géographiquement.
 
