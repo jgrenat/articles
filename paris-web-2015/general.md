@@ -89,6 +89,6 @@ En effet, l'initialisation d'une nouvelle brique métier est beaucoup plus longu
 
 Si pour Blablacar les avantages surpassent de loin les inconvénients, les deux intervenants nous enjoignent donc à réfléchir très sérieusement avant de choisir de faire évoluer son architecture.
 
-## Et ce n'était pas tout
+## Et ce n'est pas tout
 
 Je n'ai malheureusement pas pu présenter ici toutes les conférences tant cette édition fut riche en contenu. Je tiens à remercier ici toutes les personnes impliquées dans l'organisation de cet évènement, auquel je n'hésiterai pas à participer de nouveau l'année prochaine.
